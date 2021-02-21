@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import ru.netology.domain.InfoTicket;
 import ru.netology.repository.RepositoryTicket;
 
+import java.util.Comparator;
 import java.util.PrimitiveIterator;
 
 @Data
@@ -47,7 +48,6 @@ public class Manager {
                 }
             }
         }
-
         return tmp;
     }
 }
