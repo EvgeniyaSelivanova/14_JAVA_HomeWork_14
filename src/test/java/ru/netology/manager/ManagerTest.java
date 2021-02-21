@@ -3,6 +3,7 @@ package ru.netology.manager;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.InfoTicket;
+import ru.netology.domain.InfoTicketComparator;
 
 import java.util.Arrays;
 
@@ -10,6 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ManagerTest {
     Manager manager = new Manager();
+    InfoTicketComparator comparator = new InfoTicketComparator();
 
     private InfoTicket first = new InfoTicket(1, 12196, "SVO", "ROV", 125);
     private InfoTicket second = new InfoTicket(2, 15405, "VKO", "ROV", 110);
@@ -46,9 +48,9 @@ public class ManagerTest {
 
     @Test
     public void shouldReturnTicketsDMEtoROV() {
-        InfoTicket[] expected = new InfoTicket[]{tenth, eighth, ninth, sixth, forth};
+        InfoTicket[] expected = new InfoTicket[]{forth, sixth, eighth, ninth, tenth};
         InfoTicket[] actual = manager.findAll("DME", "ROV");
-        Arrays.sort(actual);
+        Arrays.sort(actual, comparator);
         assertArrayEquals(expected, actual);
     }
 
@@ -56,7 +58,7 @@ public class ManagerTest {
     public void shouldReturnTicketsSVOtoROV() {
         InfoTicket[] expected = new InfoTicket[]{first, seventh};
         InfoTicket[] actual = manager.findAll("SVO", "ROV");
-        Arrays.sort(actual);
+        Arrays.sort(actual, comparator);
         assertArrayEquals(expected, actual);
     }
 
@@ -64,33 +66,8 @@ public class ManagerTest {
     public void shouldReturnTicketsVKOtoROV() {
         InfoTicket[] expected = new InfoTicket[]{second, third, fifth};
         InfoTicket[] actual = manager.findAll("VKO", "ROV");
-        Arrays.sort(actual);
+        Arrays.sort(actual, comparator);
         assertArrayEquals(expected, actual);
     }
-
-    @Test
-    public void shouldReturnEmptyInfoTicketNoneExistDeparture() {
-        InfoTicket[] expected = new InfoTicket[]{};
-        InfoTicket[] actual = manager.findAll("NONE", "ROV");
-        Arrays.sort(actual);
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldReturnEmptyInfoTicketNoneExistArrival() {
-        InfoTicket[] expected = new InfoTicket[]{};
-        InfoTicket[] actual = manager.findAll("VKO", "NONE");
-        Arrays.sort(actual);
-        assertArrayEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldRemoveByDepartureDME() {
-        InfoTicket[] expected = new InfoTicket[]{first, second, third, fifth, seventh};
-        InfoTicket[] actual = manager.removeByDeparture("DME");
-        Arrays.sort(actual);
-        assertArrayEquals(expected, actual);
-    }
-
 
 }
