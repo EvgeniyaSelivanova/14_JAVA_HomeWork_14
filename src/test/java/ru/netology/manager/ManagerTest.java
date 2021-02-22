@@ -42,7 +42,6 @@ public class ManagerTest {
     public void shouldReturnAllVariantsOfFling() {
         InfoTicket[] expected = new InfoTicket[]{first, second, tenth, eighth, ninth, sixth, third, fifth, seventh, forth};
         InfoTicket[] actual = manager.getAll();
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
