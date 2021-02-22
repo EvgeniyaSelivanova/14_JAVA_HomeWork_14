@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InfoTicket implements Comparable {
+public class InfoTicket implements Comparable<InfoTicket> {
     private int id;
     private int price;
     private String departure;
@@ -15,9 +15,8 @@ public class InfoTicket implements Comparable {
     private int duration;
 
     @Override
-    public int compareTo(Object o) {
-        InfoTicket p = (InfoTicket) o;
-        return price - p.price;
+    public int compareTo(InfoTicket o) {
+        return price - o.price;
     }
 
 }

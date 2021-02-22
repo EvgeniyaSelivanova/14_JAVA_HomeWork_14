@@ -4,8 +4,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.InfoTicket;
 
-import java.util.Arrays;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 public class ManagerTest {
@@ -40,7 +38,6 @@ public class ManagerTest {
     public void shouldReturnAllVariantsOfFling() {
         InfoTicket[] expected = new InfoTicket[]{first, second, tenth, eighth, ninth, sixth, third, fifth, seventh, forth};
         InfoTicket[] actual = manager.getAll();
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
@@ -48,7 +45,6 @@ public class ManagerTest {
     public void shouldReturnTicketsDMEtoROV() {
         InfoTicket[] expected = new InfoTicket[]{tenth, eighth, ninth, sixth, forth};
         InfoTicket[] actual = manager.findAll("DME", "ROV");
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
@@ -56,7 +52,6 @@ public class ManagerTest {
     public void shouldReturnTicketsSVOtoROV() {
         InfoTicket[] expected = new InfoTicket[]{first, seventh};
         InfoTicket[] actual = manager.findAll("SVO", "ROV");
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
@@ -64,7 +59,6 @@ public class ManagerTest {
     public void shouldReturnTicketsVKOtoROV() {
         InfoTicket[] expected = new InfoTicket[]{second, third, fifth};
         InfoTicket[] actual = manager.findAll("VKO", "ROV");
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
@@ -72,7 +66,6 @@ public class ManagerTest {
     public void shouldReturnEmptyInfoTicketNoneExistDeparture() {
         InfoTicket[] expected = new InfoTicket[]{};
         InfoTicket[] actual = manager.findAll("NONE", "ROV");
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
@@ -80,7 +73,6 @@ public class ManagerTest {
     public void shouldReturnEmptyInfoTicketNoneExistArrival() {
         InfoTicket[] expected = new InfoTicket[]{};
         InfoTicket[] actual = manager.findAll("VKO", "NONE");
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 
@@ -88,7 +80,6 @@ public class ManagerTest {
     public void shouldRemoveByDepartureDME() {
         InfoTicket[] expected = new InfoTicket[]{first, second, third, fifth, seventh};
         InfoTicket[] actual = manager.removeByDeparture("DME");
-        Arrays.sort(actual);
         assertArrayEquals(expected, actual);
     }
 

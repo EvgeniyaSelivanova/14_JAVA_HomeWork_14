@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import ru.netology.domain.InfoTicket;
 import ru.netology.repository.RepositoryTicket;
 
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.PrimitiveIterator;
 
 @Data
@@ -20,11 +22,15 @@ public class Manager {
     }
 
     public InfoTicket[] getAll() {
-        return repository.getAll();
+        InfoTicket[] tmp = repository.getAll();
+        Arrays.sort(tmp);
+        return tmp;
     }
 
     public InfoTicket[] removeByDeparture(String departure) {
-        return repository.removeByDeparture(departure);
+        InfoTicket[] tmp = repository.removeByDeparture(departure);
+        Arrays.sort(tmp);
+        return tmp;
     }
 
     public InfoTicket[] findAll(String departure, String arrival) {
@@ -32,22 +38,18 @@ public class Manager {
         int length = 0;
         int index = 0;
         for (InfoTicket item : items) {
-            if (item.getDeparture() == departure) {
-                if (item.getArrival() == arrival) {
-                    length++;
-                }
+            if ((item.getDeparture() == departure) && (item.getArrival() == arrival)) {
+                length++;
             }
         }
         InfoTicket[] tmp = new InfoTicket[length];
         for (InfoTicket item : items) {
-            if (item.getDeparture() == departure) {
-                if (item.getArrival() == arrival) {
-                    tmp[index] = item;
-                    index++;
-                }
+            if ((item.getDeparture() == departure) && (item.getArrival() == arrival)) {
+                tmp[index] = item;
+                index++;
             }
         }
-
+        Arrays.sort(tmp);
         return tmp;
     }
 }
